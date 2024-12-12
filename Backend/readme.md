@@ -77,11 +77,49 @@ POST /users/register
 - The response will not include the password field
 ```
 
-This README provides:
-1. Endpoint details
-2. Request format with example
-3. Response formats (both success and error)
-4. Validation rules
-5. Important notes about the endpoint's behavior
+## Login User
+Login a user in the system.
 
-You can place this file in your Backend folder and expand it as you add more endpoints to your API.
+### Endpoint
+```
+POST /users/login
+```
+json
+{
+"email": "string", // Required, valid email format
+"password": "string" // Required, min 6 characters
+}
+json
+{
+"email": "john.doe@example.com",
+"password": "password123"
+}
+json
+{
+"message": "Login successful",
+"user": {
+"id": "string",
+"fullname": {
+"firstname": "string",
+"lastname": "string"
+},
+"email": "string",
+"socketId": "string"
+},
+"token": "string" // JWT authentication token
+}
+json
+{
+"errors": [
+{
+"msg": "Invalid email address",
+"param": "email",
+"location": "body"
+}
+]
+}
+json
+{
+"message": "Invalid email or password"
+}
+
