@@ -123,3 +123,79 @@ json
 "message": "Invalid email or password"
 }
 
+## Get User Profile
+Get the current user's profile information.
+
+### Endpoint
+```
+GET /users/profile
+```
+
+### Headers
+```
+Authorization: Bearer <token>
+```
+
+### Response
+
+#### Success Response (200 OK)
+```json
+{
+    "message": "User profile fetched successfully",
+    "user": {
+        "_id": "string",
+        "fullname": {
+            "firstname": "string",
+            "lastname": "string"
+        },
+        "email": "string",
+        "socketId": "string"
+    }
+}
+```
+
+#### Error Responses
+
+##### Unauthorized (401 Unauthorized)
+```json
+{
+    "message": "Authentication required"
+}
+```
+
+## Logout User
+Logout the current user and invalidate their token.
+
+### Endpoint
+```
+GET /users/logout
+```
+
+### Headers
+```
+Authorization: Bearer <token>
+```
+
+### Response
+
+#### Success Response (200 OK)
+```json
+{
+    "message": "Logout successful"
+}
+```
+
+#### Error Responses
+
+##### Unauthorized (401 Unauthorized)
+```json
+{
+    "message": "Authentication required"
+}
+```
+
+### Notes
+- The token will be blacklisted for 24 hours
+- The session cookie will be cleared
+- Subsequent requests with the same token will be rejected
+
